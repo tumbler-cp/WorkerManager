@@ -3,6 +3,7 @@ package lab.arahnik.controller;
 import lab.arahnik.dto.WorkerDto;
 import lab.arahnik.entity.Worker;
 import lab.arahnik.service.WorkerService;
+import lab.arahnik.websocket.handlers.WsTextHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class WorkerController {
     private final WorkerService workerService;
+    private final WsTextHandler wsTextHandler;
 
     @GetMapping
     public List<Worker> listAll() {
@@ -29,7 +31,7 @@ public class WorkerController {
             return ResponseEntity.badRequest()
                     .body(e.getMessage());
         }
+        wsTextHandler.sendMessage("CREATION");
         return ResponseEntity.ok(obj);
     }
-
 }
