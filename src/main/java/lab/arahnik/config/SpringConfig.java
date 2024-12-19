@@ -34,7 +34,7 @@ import java.util.Properties;
 @EnableWebMvc
 @EnableTransactionManagement
 @ComponentScan("lab.arahnik")
-@EnableJpaRepositories(basePackages = "lab.arahnik.repository")
+@EnableJpaRepositories("lab.arahnik.repository")
 @PropertySource("classpath:application.properties")
 @RequiredArgsConstructor
 public class SpringConfig implements WebMvcConfigurer {

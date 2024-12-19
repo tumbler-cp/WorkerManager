@@ -18,20 +18,40 @@ public class Worker {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @NotNull
     @NotBlank
     private String name;
 
     @NotNull
+    @OneToOne
+    private Coordinates coordinates;
+
+    @NotNull
     private LocalDate creationDate;
 
-    @Min(1)
-    private double salary;
+    @NotNull
+    @ManyToOne
+    private Organization organization;
 
     @Min(1)
-    private long rating;
+    private Double salary;
+
+    @Min(1)
+    private Long rating;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private Position position;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
+    @NotNull
+    @OneToOne
+    private Person person;
 
     @PrePersist
     protected void onCreate() {
